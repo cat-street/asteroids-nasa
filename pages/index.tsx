@@ -1,7 +1,9 @@
 import { ReactElement } from 'react';
 import Head from 'next/head';
 
+import Header from '../components/Header/Header';
 import styles from '../styles/Home.module.css';
+import Footer from '../components/Footer/Footer';
 
 export default function Home(): ReactElement {
   return (
@@ -11,26 +13,12 @@ export default function Home(): ReactElement {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Header />
+
       <main className={styles.main}>
-        <header>
-          <h1 className={styles.title}>Armageddon V</h1>
-          <p>Сервис мониторинга и уничтожения астероидов, опасно подлетающих к Земле.</p>
-          <nav>
-            <ul>
-              <li>
-                <button type="button">Астеродиды</button>
-              </li>
-              <li>
-                <button type="button">Уничтожение</button>
-              </li>
-            </ul>
-          </nav>
-        </header>
       </main>
 
-      <footer className={styles.footer}>
-        <p>2021 &copy; Все права и планета защищены</p>
-      </footer>
+      <Footer />
     </div>
   );
 }
