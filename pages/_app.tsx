@@ -1,10 +1,18 @@
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import type { AppProps } from 'next/app';
 
-import '../styles/globals.css'
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
-  return <Component {...pageProps} />
+  const [asteroids, setAsteroids] = useState({});
+
+  return (
+    <Component
+      {...pageProps}
+      asteroids={asteroids}
+      setAsteroids={setAsteroids}
+    />
+  );
 }
 
-export default MyApp
+export default MyApp;
