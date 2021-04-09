@@ -1,24 +1,16 @@
 import { ReactElement } from 'react';
-import Head from 'next/head';
 
 import Header from '../components/Header/Header';
-import styles from '../styles/Home.module.css';
 import Footer from '../components/Footer/Footer';
+import Layout from '../components/Layout/Layout';
+import Asteroids from '../components/Asteroids/Asteroids';
 
 export default function Home(): ReactElement {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Armageddon V</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+    <Layout title="Armageddon V">
       <Header />
-
-      <main className={styles.main}>
-      </main>
-
+      <Asteroids />
       <Footer />
-    </div>
+    </Layout>
   );
 }

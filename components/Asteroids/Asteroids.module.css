@@ -1,0 +1,38 @@
+.filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 26px 0 24px;
+}
+
+.label {
+  margin-left: 6px;
+}
+
+.sort {
+  display: flex;
+  gap: 6px;
+}
+
+.button {
+  padding: 0;
+
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+
+  font-family: inherit;
+  font-size: 16px;
+  text-decoration: underline;
+
+  transition: all 200ms ease-out;
+}
+
+.button:hover {
+  opacity: .5;
+}
+
+.button_active {
+  font-weight: 700;
+  text-decoration: none;
+}

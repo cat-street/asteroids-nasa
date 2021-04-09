@@ -15,12 +15,16 @@ const Header: FC = () => (
       <ul className={styles.menu}>
         <li>
           <ActiveLink href="/" activeClassName={styles.button_active}>
-            <button type="button" className={styles.button}>Астеродиды</button>
+            <button type="button" className={styles.button}>
+              Астеродиды
+            </button>
           </ActiveLink>
         </li>
         <li>
           <ActiveLink href="/destroy" activeClassName={styles.button_active}>
-            <button type="button" className={styles.button}>Уничтожение</button>
+            <button type="button" className={styles.button}>
+              Уничтожение
+            </button>
           </ActiveLink>
         </li>
       </ul>
