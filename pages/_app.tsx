@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
-  const [asteroids, setAsteroids] = useState({});
+  const [asteroids, setAsteroids] = useState<Record<string, any>[]>([]);
 
   return (
     <Component

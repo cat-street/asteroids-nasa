@@ -9,8 +9,8 @@ import Asteroids from '../components/Asteroids/Asteroids';
 
 type Props = {
   data: Record<string, any>;
-  asteroids: Record<string, any>;
-  setAsteroids: (data: Record<string, any>) => void;
+  asteroids: Record<string, any>[];
+  setAsteroids: (data: Record<string, any>[]) => void;
 };
 
 export default function Home({
@@ -19,7 +19,7 @@ export default function Home({
   setAsteroids,
 }: Props): ReactElement {
   useEffect(() => {
-    setAsteroids(data);
+    setAsteroids(Object.values(data)[0]);
   }, []);
 
   return (
@@ -34,7 +34,7 @@ export default function Home({
 export const getServerSideProps: GetServerSideProps = async () => {
   const date = (new Date()).toISOString().split('T')[0];
   const result = await fetch(
-    `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=DEMO_KEY`,
+    `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&end_date=${date}&api_key=v3nWcnCDTXls5Q4HvYcDIbCM91ygb5NJphV91sQ8`,
   );
   const data = await result.json();
   return {

@@ -31,11 +31,11 @@
 
   background-color: transparent;
   border: 0;
+  border-bottom: 1px solid #000;
   cursor: pointer;
 
   font-family: inherit;
   font-size: 16px;
-  text-decoration: underline;
 
   transition: all 200ms ease-out;
 }
@@ -46,5 +46,5 @@
 
 .button_active {
   font-weight: 700;
-  text-decoration: none;
+  border-bottom: 0;
 }
