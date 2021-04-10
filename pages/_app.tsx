@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
   const [count, setCount] = useState(5);
 
   const raiseCount = () => {
-    setCount(count + 3);
+    setCount((count) => count + 3);
   };
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement, useEffect, useRef } from 'react';
 
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
@@ -24,6 +24,14 @@ export default function Home({
   addCards,
 }: Props): ReactElement {
   const { data, isLoading, isError } = useAsteroids(new Date());
+  const loader = useRef(null);
+
+  const handleObserver = (entities) => {
+    const target = entities[0];
+    if (target.isIntersecting) {
+      addCards();
+    }
+  }
 
   useEffect(() => {
     if (data) {
@@ -36,6 +44,18 @@ export default function Home({
     }
   }, [data]);
 
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 1.0
+    };
+    const observer = new IntersectionObserver(handleObserver, options);
+    if (loader.current) {
+      observer.observe(loader.current);
+    }
+  }, []);
+
   return (
     <Layout title="Armageddon V">
       <Header />
@@ -44,6 +64,7 @@ export default function Home({
       ) : (
         <Asteroids asteroids={currentAsteroids} />
       )}
+      <div ref={loader}>TEST</div>
       <Footer />
     </Layout>
   );
