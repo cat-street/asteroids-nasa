@@ -9,7 +9,7 @@ import useAsteroids from '../hooks/useAsteroids';
 type Props = {
   asteroids: Record<string, any>[];
   currentAsteroids: Record<string, any>[];
-  setAsteroids: (data: Record<string, any>) => void;
+  addAsteroids: (data: Record<string, any>) => void;
   setCurrentAsteroids: (data: Record<string, any>) => void;
   count: number;
   addCards: () => void;
@@ -18,7 +18,7 @@ type Props = {
 export default function Home({
   asteroids,
   currentAsteroids,
-  setAsteroids,
+  addAsteroids,
   setCurrentAsteroids,
   count,
   addCards,
@@ -40,7 +40,7 @@ export default function Home({
       for (let i = initialData.length - 1; i >= 0; i--) {
         asteroidData = asteroidData.concat(initialData[i]);
       }
-      setAsteroids(asteroidData);
+      addAsteroids(asteroidData);
     }
   }, [data]);
 
@@ -51,10 +51,10 @@ export default function Home({
       threshold: 1.0
     };
     const observer = new IntersectionObserver(handleObserver, options);
-    if (loader.current) {
+    if (data && loader.current) {
       observer.observe(loader.current);
     }
-  }, []);
+  }, [data]);
 
   return (
     <Layout title="Armageddon V">
@@ -64,7 +64,7 @@ export default function Home({
       ) : (
         <Asteroids asteroids={currentAsteroids} />
       )}
-      <div ref={loader}>TEST</div>
+      <div ref={loader}></div>
       <Footer />
     </Layout>
   );

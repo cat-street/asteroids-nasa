@@ -14,6 +14,10 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     setCount((count) => count + 3);
   };
 
+  const addAsteroids = (data: Record<string, any>[]) => {
+    setAsteroids(prevData => prevData.concat(data));
+  }
+
   useEffect(() => {
     if (asteroids.length > 0) {
       setCurrentAsteroids(asteroids.slice(0, 5));
@@ -31,7 +35,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
       {...pageProps}
       asteroids={asteroids}
       currentAsteroids={currentAsteroids}
-      setAsteroids={setAsteroids}
+      addAsteroids={addAsteroids}
       setCurrentAsteroids={setCurrentAsteroids}
       count={count}
       addCards={raiseCount}
