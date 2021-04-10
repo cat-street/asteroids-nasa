@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useRef } from 'react';
+import { ReactElement, useEffect, useRef, useState } from 'react';
 
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
@@ -23,7 +23,8 @@ export default function Home({
   count,
   addCards,
 }: Props): ReactElement {
-  const { data, isLoading, isError } = useAsteroids(new Date());
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const { data, isLoading, isError } = useAsteroids(currentDate);
   const loader = useRef(null);
 
   const handleObserver = (entities) => {
@@ -31,7 +32,19 @@ export default function Home({
     if (target.isIntersecting) {
       addCards();
     }
-  }
+  };
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0,
+    };
+    const observer = new IntersectionObserver(handleObserver, options);
+    if (loader.current) {
+      observer.observe(loader.current);
+    }
+  }, []);
 
   useEffect(() => {
     if (data) {
@@ -45,25 +58,18 @@ export default function Home({
   }, [data]);
 
   useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 1.0
-    };
-    const observer = new IntersectionObserver(handleObserver, options);
-    if (data && loader.current) {
-      observer.observe(loader.current);
+    if (asteroids.length > 0 && count >= asteroids.length - 10) {
+      const date = new Date();
+      date.setDate(date.getDate() + 7);
+      setCurrentDate(date);
     }
-  }, [data]);
+  }, [count]);
 
   return (
     <Layout title="Armageddon V">
       <Header />
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <Asteroids asteroids={currentAsteroids} />
-      )}
+      {isLoading && (<p>Loading...</p>)}
+      <Asteroids asteroids={currentAsteroids} />
       <div ref={loader}></div>
       <Footer />
     </Layout>

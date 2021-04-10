@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
   const [count, setCount] = useState(5);
 
   const raiseCount = () => {
+    if (asteroids.length > 0 && count >= asteroids.length) return;
     setCount((count) => count + 3);
   };
 
@@ -20,15 +21,9 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
 
   useEffect(() => {
     if (asteroids.length > 0) {
-      setCurrentAsteroids(asteroids.slice(0, 5));
-    }
-  }, [asteroids]);
-
-  useEffect(() => {
-    if (currentAsteroids.length > 0) {
       setCurrentAsteroids(asteroids.slice(0, count));
     }
-  }, [count]);
+  }, [count, asteroids]);
 
   return (
     <Component
