@@ -58,9 +58,13 @@ export default function Home({
   }, [data]);
 
   useEffect(() => {
-    if (asteroids.length > 0 && count >= asteroids.length - 10) {
-      const date = new Date();
-      date.setDate(date.getDate() + 7);
+    if (
+      asteroids.length > 0 &&
+      count >= asteroids.length - 10 &&
+      count <= asteroids.length - 7
+    ) {
+      const date = new Date(currentDate);
+      date.setDate(date.getDate() + 8);
       setCurrentDate(date);
     }
   }, [count]);
@@ -68,7 +72,7 @@ export default function Home({
   return (
     <Layout title="Armageddon V">
       <Header />
-      {isLoading && (<p>Loading...</p>)}
+      {isLoading && <p>Loading...</p>}
       <Asteroids asteroids={currentAsteroids} />
       <div ref={loader}></div>
       <Footer />
