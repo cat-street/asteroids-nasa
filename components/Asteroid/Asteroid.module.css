@@ -5,9 +5,16 @@
 
   border: 1px solid #000;
   border-radius: 10px;
-  background: linear-gradient(90deg, #CFF37D 0%, #7DE88C 100%);
 
   overflow: hidden;
+}
+
+.bg_normal {
+  background: linear-gradient(90deg, #CFF37D 0%, #7DE88C 100%);
+}
+
+.bg_dangerous {
+  background: linear-gradient(90deg, #FFB199 0%, #FF0844 100%);
 }
 
 .asteroid__space {

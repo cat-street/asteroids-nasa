@@ -15,13 +15,13 @@ const Asteroid: FC<Props> = ({ asteroid }) => {
   ).toFixed();
 
   return (
-    <li className={styles.asteroid}>
+    <li className={`${styles.asteroid} ${styles.bg_normal}`}>
       <div className={styles.asteroid__space}>
         <div>
           <img
             src="/images/asteroid.svg"
             className={styles.asteroid__rock}
-            style={{ width: `${+width * .7}px` }}
+            style={{ width: `${+width * 0.6}px` }}
           />
         </div>
         <div>
@@ -43,7 +43,7 @@ const Asteroid: FC<Props> = ({ asteroid }) => {
       <div className={styles.asteroid__rating}>
         <p>Оценка:</p>
         <p className={styles['asteroid__rating-type']}>
-          {asteroid.is_potentially_hazardous_asteroid ? 'опасен' : 'не опасен'}
+          {asteroid.is_sentry_object ? 'опасен' : 'не опасен'}
         </p>
         <button type="button" className={styles['asteroid__rating-button']}>
           На уничтожение
@@ -62,7 +62,9 @@ const Asteroid: FC<Props> = ({ asteroid }) => {
           <p>Расстояние</p>
           <p className={styles['asteroid__data-dots']}></p>
           <p className={styles['asteroid__data-value']}>
-            {parseInt(asteroid.close_approach_data[0].miss_distance.kilometers)}{' '}
+            {parseInt(
+              asteroid.close_approach_data[0].miss_distance.kilometers,
+            ).toLocaleString()}{' '}
             км
           </p>
         </div>
