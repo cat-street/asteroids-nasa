@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import Asteroid from '../Asteroid/Asteroid';
 
 import styles from './Asteroids.module.css';
@@ -8,6 +8,8 @@ type Props = {
 };
 
 const Asteroids: FC<Props> = ({ asteroids }) => {
+  const [measure, setMeasure] = useState<'km' | 'lunar'>('km');
+
   return (
     <main className={styles.main}>
       <div className={styles.filter}>
@@ -30,7 +32,7 @@ const Asteroids: FC<Props> = ({ asteroids }) => {
 
       <ul className={styles.asteroids}>
         {asteroids && asteroids.map((el) => (
-          <Asteroid key={el.id} asteroid={el} />
+          <Asteroid key={el.id} asteroid={el} measure={measure} />
         ))}
       </ul>
     </main>
