@@ -33,11 +33,15 @@
   border: 0;
   border-bottom: 1px solid #000;
   cursor: pointer;
+  transition: all 200ms ease-out;
+  outline: none;
 
   font-family: inherit;
   font-size: 16px;
+}
 
-  transition: all 200ms ease-out;
+.button:focus-visible {
+  outline: auto;
 }
 
 .button:hover {
@@ -46,5 +50,5 @@
 
 .button_active {
   font-weight: 700;
-  border-bottom: 0;
+  border-bottom-color: transparent;
 }

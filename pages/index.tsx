@@ -25,10 +25,10 @@ export default function Home({
 }: Props): ReactElement {
   const [currentDate, setCurrentDate] = useState(new Date());
   const { data, isLoading, isError } = useAsteroids(currentDate);
-  const loader = useRef(null);
+  const loader = useRef<HTMLDivElement>(null);
 
-  const handleObserver = (entities) => {
-    const target = entities[0];
+  const handleObserver = (entries: IntersectionObserverEntry[]) => {
+    const target = entries[0];
     if (target.isIntersecting) {
       addCards();
     }

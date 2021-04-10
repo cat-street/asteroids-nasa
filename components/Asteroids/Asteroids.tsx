@@ -21,19 +21,32 @@ const Asteroids: FC<Props> = ({ asteroids }) => {
         </div>
         <div className={styles.sort}>
           Расстояние
-          <button type="button" className={styles.button}>
+          <button
+            type="button"
+            className={`${styles.button} ${
+              measure === 'km' && styles.button_active
+            }`}
+            onClick={() => setMeasure('km')}
+          >
             в километрах,
           </button>
-          <button type="button" className={styles.button}>
+          <button
+            type="button"
+            className={`${styles.button} ${
+              measure === 'lunar' && styles.button_active
+            }`}
+            onClick={() => setMeasure('lunar')}
+          >
             в дистанциях до луны
           </button>
         </div>
       </div>
 
       <ul className={styles.asteroids}>
-        {asteroids && asteroids.map((el) => (
-          <Asteroid key={el.id} asteroid={el} measure={measure} />
-        ))}
+        {asteroids &&
+          asteroids.map((el) => (
+            <Asteroid key={el.id} asteroid={el} measure={measure} />
+          ))}
       </ul>
     </main>
   );
