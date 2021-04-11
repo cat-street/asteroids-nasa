@@ -11,10 +11,20 @@
   overflow: hidden;
 }
 
+.bg_normal {
+  background: linear-gradient(90deg, #CFF37D 0%, transparent 20%);
+}
+
+.bg_dangerous {
+  background: linear-gradient(90deg, #FFB199 0%, transparent 20%);
+}
+
 .asteroid__rock-container {
+  margin-top: 24px;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 @keyframes rotate {
@@ -79,7 +89,55 @@
   padding: 0;
 }
 
+.asteroid__details-title {
+  margin-bottom: 0;
+
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
 .asteroid__approach {
-  padding: 12px;
-  border: 1px solid #000;
+  margin-top: 12px;
+  padding: 0 12px;
+
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 5px;
+}
+
+.asteroid__approach:nth-child(odd) {
+  background-color: #f3fae3;
+}
+
+.asteroid__rating {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.asteroid__rating p:first-child {
+  margin: 0;
+}
+.asteroid__rating-type {
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.asteroid__rating-button {
+  padding: 14px 16px;
+
+  background-color: #186DD6;
+  border: 0;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 200ms ease-out;
+
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.asteroid__rating-button:hover {
+  opacity: .8;
 }

@@ -7,6 +7,7 @@ import styles from './Asteroids.module.css';
 type Props = {
   asteroids: Record<string, any>[];
   isLoading: boolean;
+  filter: boolean;
   switchFilter: () => void;
   setAsteroid: (data: Record<string, any>) => void;
 };
@@ -14,6 +15,7 @@ type Props = {
 const Asteroids: FC<Props> = ({
   asteroids,
   isLoading,
+  filter,
   switchFilter,
   setAsteroid,
 }) => {
@@ -28,6 +30,7 @@ const Asteroids: FC<Props> = ({
             name="dangerous"
             id="dangerous"
             onChange={switchFilter}
+            checked={filter}
           />
           <label htmlFor="dangerous" className={styles.label}>
             Показать только опасные

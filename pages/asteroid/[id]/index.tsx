@@ -17,9 +17,10 @@ const index: FC<Props> = ({ asteroid }) => {
   const router = useRouter();
   const { id } = router.query;
   const { data, isLoading } = useAsteroid(id as string);
+  const title = data ? `Armageddon V - ${data.name}` : 'Armageddon V';
 
   return (
-    <Layout title={`Armageddon V - ${asteroid.name}`}>
+    <Layout title={title}>
       <Header />
 
       {isLoading ? <Spinner /> : (

@@ -73,6 +73,7 @@ export default function Home({
       <Header />
       <Asteroids
         asteroids={visibleAsteroids}
+        filter={filter}
         switchFilter={switchFilter}
         isLoading={isLoading}
         setAsteroid={setAsteroid}
