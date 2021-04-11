@@ -13,44 +13,68 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
   >([]);
   const [count, setCount] = useState(5);
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [filter, setFilter] = useState(false);
 
-  const raiseCount = () => {
-    if (asteroids.length > 0 && count >= asteroids.length) return;
+  const addCards = () => {
     setCount((count) => count + 3);
   };
 
   const addAsteroids = (data: Record<string, any>[]) => {
-    setAsteroids(prevData => prevData.concat(data));
-  }
+    setAsteroids((prevData) => prevData.concat(data));
+  };
+
+  const addCurrentAsteroids = (data: Record<string, any>[]) => {
+    setCurrentAsteroids((prevData) => prevData.concat(data));
+  };
+
+  const switchFilter = () => {
+    setFilter(!filter);
+  };
 
   useEffect(() => {
-    if (asteroids.length > 0) {
-      setVisibleAsteroids(asteroids.slice(0, count));
+    if (currentAsteroids.length > 0) {
+      setVisibleAsteroids(currentAsteroids.slice(0, count));
     }
-  }, [count, asteroids]);
+  }, [count, currentAsteroids]);
 
   useEffect(() => {
     if (
-      asteroids.length > 0 &&
-      count >= asteroids.length - 10 &&
-      count <= asteroids.length - 7
+      currentAsteroids.length > 0 &&
+      count >= currentAsteroids.length &&
+      count < currentAsteroids.length + 3
     ) {
       const date = new Date(currentDate);
       date.setDate(date.getDate() + 7);
       setCurrentDate(date);
     }
-  }, [count]);
+  }, [currentAsteroids, count]);
 
-    return (
+  useEffect(() => {
+    if (filter) {
+      const filteredAsteroids = currentAsteroids.filter(
+        (el) => el.is_potentially_hazardous_asteroid,
+      );
+      setCurrentAsteroids(filteredAsteroids);
+      setVisibleAsteroids(
+        visibleAsteroids.filter((el) => el.is_potentially_hazardous_asteroid),
+      );
+      setCount(filteredAsteroids.length);
+    } else {
+      setCurrentAsteroids(asteroids);
+      setVisibleAsteroids(asteroids.slice(0, count));
+    }
+  }, [filter]);
+
+  return (
     <Component
       {...pageProps}
-      asteroids={asteroids}
       visibleAsteroids={visibleAsteroids}
-      addAsteroids={addAsteroids}
-      setVisibleAsteroids={setVisibleAsteroids}
-      count={count}
-      addCards={raiseCount}
       date={currentDate}
+      filter={filter}
+      addAsteroids={addAsteroids}
+      addCurrentAsteroids={addCurrentAsteroids}
+      addCards={addCards}
+      switchFilter={switchFilter}
     />
   );
 }

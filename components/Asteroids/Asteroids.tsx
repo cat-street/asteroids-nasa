@@ -5,16 +5,22 @@ import styles from './Asteroids.module.css';
 
 type Props = {
   asteroids: Record<string, any>[];
+  switchFilter: () => void;
 };
 
-const Asteroids: FC<Props> = ({ asteroids }) => {
+const Asteroids: FC<Props> = ({ asteroids, switchFilter }) => {
   const [measure, setMeasure] = useState<'km' | 'lunar'>('km');
 
   return (
     <main className={styles.main}>
       <div className={styles.filter}>
         <div>
-          <input type="checkbox" name="dangerous" id="dangerous" />
+          <input
+            type="checkbox"
+            name="dangerous"
+            id="dangerous"
+            onChange={switchFilter}
+          />
           <label htmlFor="dangerous" className={styles.label}>
             Показать только опасные
           </label>

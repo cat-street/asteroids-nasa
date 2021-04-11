@@ -7,23 +7,23 @@ import Asteroids from '../components/Asteroids/Asteroids';
 import useAsteroids from '../hooks/useAsteroids';
 
 type Props = {
-  asteroids: Record<string, any>[];
   visibleAsteroids: Record<string, any>[];
-  addAsteroids: (data: Record<string, any>) => void;
-  setVisibleAsteroids: (data: Record<string, any>) => void;
-  count: number;
-  addCards: () => void;
   date: Date;
+  filter: boolean;
+  addAsteroids: (data: Record<string, any>) => void;
+  addCurrentAsteroids: (data: Record<string, any>) => void;
+  addCards: () => void;
+  switchFilter: () => void;
 };
 
 export default function Home({
-  asteroids,
   visibleAsteroids,
-  addAsteroids,
-  setVisibleAsteroids,
-  count,
-  addCards,
   date,
+  filter,
+  addAsteroids,
+  addCurrentAsteroids,
+  addCards,
+  switchFilter,
 }: Props): ReactElement {
   const { data, isLoading, isError } = useAsteroids(date);
   const loader = useRef<HTMLDivElement>(null);
@@ -53,8 +53,16 @@ export default function Home({
       let asteroidData = [];
       initialData.map((el) => {
         asteroidData = asteroidData.concat(data.near_earth_objects[el]);
-      })
+      });
       addAsteroids(asteroidData);
+      if (filter) {
+        const filteredData = asteroidData.filter(
+          (el) => el.is_potentially_hazardous_asteroid,
+        );
+        addCurrentAsteroids(filteredData);
+      } else {
+        addCurrentAsteroids(asteroidData);
+      }
     }
   }, [data]);
 
@@ -62,7 +70,10 @@ export default function Home({
     <Layout title="Armageddon V">
       <Header />
       {isLoading && <p>Loading...</p>}
-      <Asteroids asteroids={visibleAsteroids} />
+      <Asteroids
+        asteroids={visibleAsteroids}
+        switchFilter={switchFilter}
+      />
       <div ref={loader}></div>
       <Footer />
     </Layout>
