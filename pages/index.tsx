@@ -8,23 +8,24 @@ import useAsteroids from '../hooks/useAsteroids';
 
 type Props = {
   asteroids: Record<string, any>[];
-  currentAsteroids: Record<string, any>[];
+  visibleAsteroids: Record<string, any>[];
   addAsteroids: (data: Record<string, any>) => void;
-  setCurrentAsteroids: (data: Record<string, any>) => void;
+  setVisibleAsteroids: (data: Record<string, any>) => void;
   count: number;
   addCards: () => void;
+  date: Date;
 };
 
 export default function Home({
   asteroids,
-  currentAsteroids,
+  visibleAsteroids,
   addAsteroids,
-  setCurrentAsteroids,
+  setVisibleAsteroids,
   count,
   addCards,
+  date,
 }: Props): ReactElement {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const { data, isLoading, isError } = useAsteroids(currentDate);
+  const { data, isLoading, isError } = useAsteroids(date);
   const loader = useRef<HTMLDivElement>(null);
 
   const handleObserver = (entries: IntersectionObserverEntry[]) => {
@@ -57,23 +58,11 @@ export default function Home({
     }
   }, [data]);
 
-  useEffect(() => {
-    if (
-      asteroids.length > 0 &&
-      count >= asteroids.length - 10 &&
-      count <= asteroids.length - 7
-    ) {
-      const date = new Date(currentDate);
-      date.setDate(date.getDate() + 7);
-      setCurrentDate(date);
-    }
-  }, [count]);
-
   return (
     <Layout title="Armageddon V">
       <Header />
       {isLoading && <p>Loading...</p>}
-      <Asteroids asteroids={currentAsteroids} />
+      <Asteroids asteroids={visibleAsteroids} />
       <div ref={loader}></div>
       <Footer />
     </Layout>

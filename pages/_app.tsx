@@ -5,10 +5,14 @@ import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
   const [asteroids, setAsteroids] = useState<Record<string, any>[]>([]);
+  const [visibleAsteroids, setVisibleAsteroids] = useState<
+    Record<string, any>[]
+  >([]);
   const [currentAsteroids, setCurrentAsteroids] = useState<
     Record<string, any>[]
   >([]);
   const [count, setCount] = useState(5);
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   const raiseCount = () => {
     if (asteroids.length > 0 && count >= asteroids.length) return;
@@ -21,19 +25,32 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
 
   useEffect(() => {
     if (asteroids.length > 0) {
-      setCurrentAsteroids(asteroids.slice(0, count));
+      setVisibleAsteroids(asteroids.slice(0, count));
     }
   }, [count, asteroids]);
 
-  return (
+  useEffect(() => {
+    if (
+      asteroids.length > 0 &&
+      count >= asteroids.length - 10 &&
+      count <= asteroids.length - 7
+    ) {
+      const date = new Date(currentDate);
+      date.setDate(date.getDate() + 7);
+      setCurrentDate(date);
+    }
+  }, [count]);
+
+    return (
     <Component
       {...pageProps}
       asteroids={asteroids}
-      currentAsteroids={currentAsteroids}
+      visibleAsteroids={visibleAsteroids}
       addAsteroids={addAsteroids}
-      setCurrentAsteroids={setCurrentAsteroids}
+      setVisibleAsteroids={setVisibleAsteroids}
       count={count}
       addCards={raiseCount}
+      date={currentDate}
     />
   );
 }

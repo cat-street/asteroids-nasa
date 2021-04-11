@@ -14,7 +14,7 @@ const Asteroids: FC<Props> = ({ asteroids }) => {
     <main className={styles.main}>
       <div className={styles.filter}>
         <div>
-          <input type="checkbox" name="dangerous" />
+          <input type="checkbox" name="dangerous" id="dangerous" />
           <label htmlFor="dangerous" className={styles.label}>
             Показать только опасные
           </label>
