@@ -25,7 +25,7 @@ export default function Home({
   addCards,
   switchFilter,
 }: Props): ReactElement {
-  const { data, isLoading, isError } = useAsteroids(date);
+  const { data, isLoading } = useAsteroids(date);
   const loader = useRef<HTMLDivElement>(null);
 
   const handleObserver = (entries: IntersectionObserverEntry[]) => {
@@ -69,10 +69,10 @@ export default function Home({
   return (
     <Layout title="Armageddon V">
       <Header />
-      {isLoading && <p>Loading...</p>}
       <Asteroids
         asteroids={visibleAsteroids}
         switchFilter={switchFilter}
+        isLoading={isLoading}
       />
       <div ref={loader}></div>
       <Footer />

@@ -1,14 +1,16 @@
 import { FC, useState } from 'react';
 import Asteroid from '../Asteroid/Asteroid';
+import Spinner from '../Spinner/Spinner';
 
 import styles from './Asteroids.module.css';
 
 type Props = {
   asteroids: Record<string, any>[];
+  isLoading: boolean;
   switchFilter: () => void;
 };
 
-const Asteroids: FC<Props> = ({ asteroids, switchFilter }) => {
+const Asteroids: FC<Props> = ({ asteroids, isLoading, switchFilter }) => {
   const [measure, setMeasure] = useState<'km' | 'lunar'>('km');
 
   return (
@@ -54,6 +56,9 @@ const Asteroids: FC<Props> = ({ asteroids, switchFilter }) => {
             <Asteroid key={el.id} asteroid={el} measure={measure} />
           ))}
       </ul>
+
+      {isLoading && <Spinner />}
+
     </main>
   );
 };
