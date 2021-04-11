@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import fetch from '../libs/fetch';
+import fetch from '../utils/fetch';
 
 type Data = {
   data?: Record<string, any>;

@@ -1,0 +1,85 @@
+.asteroid {
+  margin: 26px 0;
+  padding: 24px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr 2fr;
+
+  border: 1px solid #000;
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+.asteroid__rock-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.asteroid__rock {
+  width: 100%;
+  min-width: 50px;
+  max-width: 150px;
+  height: auto;
+  display: block;
+
+  animation: rotate 20s linear infinite;
+}
+
+.asteroid__name {
+  margin: 0;
+
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.asteroid__data {
+  margin: 0;
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.asteroid__data-row {
+  display: flex;
+}
+
+.asteroid__data-row p {
+  margin: 0;
+}
+
+.asteroid__data-name {
+  flex-shrink: 0;
+}
+
+.asteroid__data-dots {
+  width: 100%;
+  border-bottom: 1px dotted #000;
+}
+
+.asteroid__data-value {
+  flex-shrink: 0;
+}
+
+.asteroid__details {
+  margin: 0;
+  padding: 0;
+}
+
+.asteroid__approach {
+  padding: 12px;
+  border: 1px solid #000;
+}

@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useRef, useState } from 'react';
+import { ReactElement, useEffect, useRef } from 'react';
 
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
@@ -14,6 +14,7 @@ type Props = {
   addCurrentAsteroids: (data: Record<string, any>) => void;
   addCards: () => void;
   switchFilter: () => void;
+  setAsteroid: (data: Record<string, any>) => void;
 };
 
 export default function Home({
@@ -24,6 +25,7 @@ export default function Home({
   addCurrentAsteroids,
   addCards,
   switchFilter,
+  setAsteroid,
 }: Props): ReactElement {
   const { data, isLoading } = useAsteroids(date);
   const loader = useRef<HTMLDivElement>(null);
@@ -73,6 +75,7 @@ export default function Home({
         asteroids={visibleAsteroids}
         switchFilter={switchFilter}
         isLoading={isLoading}
+        setAsteroid={setAsteroid}
       />
       <div ref={loader}></div>
       <Footer />

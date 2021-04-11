@@ -8,9 +8,15 @@ type Props = {
   asteroids: Record<string, any>[];
   isLoading: boolean;
   switchFilter: () => void;
+  setAsteroid: (data: Record<string, any>) => void;
 };
 
-const Asteroids: FC<Props> = ({ asteroids, isLoading, switchFilter }) => {
+const Asteroids: FC<Props> = ({
+  asteroids,
+  isLoading,
+  switchFilter,
+  setAsteroid,
+}) => {
   const [measure, setMeasure] = useState<'km' | 'lunar'>('km');
 
   return (
@@ -53,12 +59,16 @@ const Asteroids: FC<Props> = ({ asteroids, isLoading, switchFilter }) => {
       <ul className={styles.asteroids}>
         {asteroids &&
           asteroids.map((el) => (
-            <Asteroid key={el.id} asteroid={el} measure={measure} />
+            <Asteroid
+              key={el.id}
+              asteroid={el}
+              measure={measure}
+              setAsteroid={setAsteroid}
+            />
           ))}
       </ul>
 
       {isLoading && <Spinner />}
-
     </main>
   );
 };

@@ -1,6 +1,7 @@
 import { ReactElement, useState, useEffect } from 'react';
 import type { AppProps } from 'next/app';
 
+import { SingleAsteroid } from '../types/asteroids';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
@@ -14,6 +15,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
   const [count, setCount] = useState(5);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [filter, setFilter] = useState(false);
+  const [chosenAsteroid, setChosenAsteroid] = useState<SingleAsteroid>();
 
   const addCards = () => {
     setCount((count) => count + 3);
@@ -29,6 +31,10 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
 
   const switchFilter = () => {
     setFilter(!filter);
+  };
+
+  const setAsteroid = (data) => {
+    setChosenAsteroid(data);
   };
 
   useEffect(() => {
@@ -71,10 +77,12 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
       visibleAsteroids={visibleAsteroids}
       date={currentDate}
       filter={filter}
+      asteroid={chosenAsteroid}
       addAsteroids={addAsteroids}
       addCurrentAsteroids={addCurrentAsteroids}
       addCards={addCards}
       switchFilter={switchFilter}
+      setAsteroid={setAsteroid}
     />
   );
 }

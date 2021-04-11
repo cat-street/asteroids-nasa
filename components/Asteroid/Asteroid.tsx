@@ -1,37 +1,42 @@
 import { FC, useState } from 'react';
 import Link from 'next/link';
 
+import formatDate from '../../utils/formatDate';
 import styles from './Asteroid.module.css';
 
 type Props = {
   asteroid: Record<string, any>;
-  measure: ('km' | 'lunar');
+  measure: 'km' | 'lunar';
+  setAsteroid: (data: Record<string, any>) => void;
 };
 
-const Asteroid: FC<Props> = ({ asteroid, measure }) => {
+const Asteroid: FC<Props> = ({ asteroid, measure, setAsteroid }) => {
+  const name = asteroid.name.replace(/.*\(([\w ]+)\)/g, '$1');
+
+  const distance = parseInt(
+    asteroid.close_approach_data[0].miss_distance.kilometers,
+  ).toLocaleString();
+
+  const displayedDistance =
+    measure === 'km'
+      ? `${distance} км`
+      : `${parseInt(asteroid.close_approach_data[0].miss_distance.lunar)} LD`;
+
   const width = (
     (asteroid.estimated_diameter.meters.estimated_diameter_min +
       asteroid.estimated_diameter.meters.estimated_diameter_max) /
     2
   ).toFixed();
 
-  const distance = parseInt(
-    asteroid.close_approach_data[0].miss_distance.kilometers,
-  ).toLocaleString();
+  const date = formatDate(asteroid.close_approach_data[0].close_approach_date);
 
-  const displayedDistance = (measure === 'km') ? `${distance} км`
-    : `${parseInt(
-      asteroid.close_approach_data[0].miss_distance.lunar,
-    )} LD`;
-
-  const date = () => {
-    return new Date(asteroid.close_approach_data[0].close_approach_date)
-      .toLocaleDateString('ru-RU', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-      })
-      .slice(0, -3);
+  const handleAsteroidClick = () => {
+    setAsteroid({
+      name,
+      date,
+      distance,
+      width,
+    });
   };
 
   return (
@@ -48,20 +53,26 @@ const Asteroid: FC<Props> = ({ asteroid, measure }) => {
             src="/images/asteroid.svg"
             className={styles.asteroid__rock}
             style={{ width: `${+width * 0.6}px` }}
+            alt="Астероид"
           />
         </div>
         <div>
-          <img src="/images/dino.svg" className={styles.asteroid__dino} />
+          <img
+            src="/images/dino.svg"
+            className={styles.asteroid__dino}
+            alt="Динозавр"
+          />
         </div>
       </div>
 
       <div className={styles.asteroid__name}>
-        <Link href="/">
+        <Link href={`/asteroid/${asteroid.id}`}>
           <button
             type="button"
             className={`${styles.button} ${styles.asteroid__link}`}
+            onClick={handleAsteroidClick}
           >
-            {asteroid.name.replace(/.*\(([\w ]+)\)/g, '$1')}
+            {name}
           </button>
         </Link>
       </div>
@@ -76,23 +87,23 @@ const Asteroid: FC<Props> = ({ asteroid, measure }) => {
         </button>
       </div>
 
-      <div className={styles.asteroid__data}>
-        <div className={styles['asteroid__data-row']}>
+      <ul className={styles.asteroid__data}>
+        <li className={styles['asteroid__data-row']}>
           <p>Дата</p>
           <p className={styles['asteroid__data-dots']}></p>
-          <p className={styles['asteroid__data-value']}>{date()}</p>
-        </div>
-        <div className={styles['asteroid__data-row']}>
+          <p className={styles['asteroid__data-value']}>{date}</p>
+        </li>
+        <li className={styles['asteroid__data-row']}>
           <p>Расстояние</p>
           <p className={styles['asteroid__data-dots']}></p>
           <p className={styles['asteroid__data-value']}>{displayedDistance}</p>
-        </div>
-        <div className={styles['asteroid__data-row']}>
+        </li>
+        <li className={styles['asteroid__data-row']}>
           <p>Размер</p>
           <p className={styles['asteroid__data-dots']}></p>
           <p className={styles['asteroid__data-value']}>{`${width} м`}</p>
-        </div>
-      </div>
+        </li>
+      </ul>
     </li>
   );
 };
