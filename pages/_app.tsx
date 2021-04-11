@@ -1,4 +1,4 @@
-import { ReactElement, useRef, useState, useEffect } from 'react';
+import { ReactElement, useState, useEffect } from 'react';
 import type { AppProps } from 'next/app';
 
 import '../styles/globals.css';

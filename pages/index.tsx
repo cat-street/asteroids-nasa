@@ -48,11 +48,11 @@ export default function Home({
 
   useEffect(() => {
     if (data) {
-      const initialData = Object.values(data.near_earth_objects);
+      const initialData = Object.keys(data.near_earth_objects).sort();
       let asteroidData = [];
-      for (let i = initialData.length - 1; i >= 0; i--) {
-        asteroidData = asteroidData.concat(initialData[i]);
-      }
+      initialData.map((el) => {
+        asteroidData = asteroidData.concat(data.near_earth_objects[el]);
+      })
       addAsteroids(asteroidData);
     }
   }, [data]);
@@ -64,7 +64,7 @@ export default function Home({
       count <= asteroids.length - 7
     ) {
       const date = new Date(currentDate);
-      date.setDate(date.getDate() + 8);
+      date.setDate(date.getDate() + 7);
       setCurrentDate(date);
     }
   }, [count]);
