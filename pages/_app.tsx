@@ -1,4 +1,4 @@
-import { ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
 import type { AppProps } from 'next/app';
 
 import { SingleAsteroid } from '../types/asteroids';

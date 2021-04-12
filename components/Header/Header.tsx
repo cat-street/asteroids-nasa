@@ -1,5 +1,5 @@
+import React, { FC } from 'react';
 import Link from 'next/link';
-import { FC } from 'react';
 import ActiveLink from '../ActiveLink/ActiveLink';
 
 import styles from './Header.module.css';
@@ -13,7 +13,7 @@ const Header: FC = () => (
         </Link>
       </h1>
       <p className={styles.subtitle}>
-        Сервис мониторинга и уничтожения астероидов, опасно подлетающих к Земле.
+        Сервис мониторинга и уничтожения астероидов, опасно подлетающих к Земле.
       </p>
     </div>
     <nav>

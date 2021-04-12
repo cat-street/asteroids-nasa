@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import Head from 'next/head';
 
 import styles from './Layout.module.css';

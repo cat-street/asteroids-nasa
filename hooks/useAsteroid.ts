@@ -6,7 +6,7 @@ type Data = {
   error?: any;
 };
 
-function useAsteroid(id: string) {
+function useAsteroid(id: string): Record<string, any> {
   const { data, error }: Data = useSWR(
     `https://www.neowsapp.com/rest/v1/neo/${id}?api_key=v3nWcnCDTXls5Q4HvYcDIbCM91ygb5NJphV91sQ8`,
     fetch,

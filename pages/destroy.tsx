@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import AsteroidsToDestroy from '../components/AsteroidsToDestroy/AsteroidsToDestroy';
 
 import Header from '../components/Header/Header';

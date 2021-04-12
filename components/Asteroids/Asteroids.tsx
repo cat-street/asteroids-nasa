@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { SingleAsteroid } from '../../types/asteroids';
 import Asteroid from '../Asteroid/Asteroid';
 import Spinner from '../Spinner/Spinner';
@@ -21,7 +21,7 @@ const Asteroids: FC<Props> = ({
   switchFilter,
   setAsteroid,
   addToDestroy,
-}) => {
+}: Props) => {
   const [measure, setMeasure] = useState<'km' | 'lunar'>('km');
 
   return (

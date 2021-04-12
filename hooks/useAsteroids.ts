@@ -6,10 +6,7 @@ type Data = {
   error?: any;
 };
 
-const options = {
-}
-
-function useAsteroids(date: Date) {
+function useAsteroids(date: Date): Record<string, any> {
   const startDate = new Date(date).toISOString().split('T')[0];
   const rawEndDate = new Date(date);
   rawEndDate.setDate(date.getDate() + 6);
@@ -17,7 +14,6 @@ function useAsteroids(date: Date) {
   const { data, error }: Data = useSWR(
     `https://api.nasa.gov/neo/rest/v1/feed?start_date=${startDate}&end_date=${endDate}&api_key=v3nWcnCDTXls5Q4HvYcDIbCM91ygb5NJphV91sQ8`,
     fetch,
-    options,
   );
 
   return {

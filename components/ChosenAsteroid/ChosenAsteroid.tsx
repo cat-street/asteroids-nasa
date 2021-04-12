@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { SingleAsteroid } from '../../types/asteroids';
 
 import formatDate from '../../utils/formatDate';
@@ -20,7 +20,7 @@ const planets = {
   Moon: 'Луны',
 };
 
-const ChosenAsteroid: FC<Props> = ({ asteroid, data, addToDestroy }) => {
+const ChosenAsteroid: FC<Props> = ({ asteroid, data, addToDestroy }: Props) => {
   const dataName = data.name.replace(/.*\(([\w ]+)\)/g, '$1');
 
   const width = (

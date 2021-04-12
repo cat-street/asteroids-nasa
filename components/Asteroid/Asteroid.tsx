@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import Link from 'next/link';
 
 import formatDate from '../../utils/formatDate';
@@ -18,7 +18,7 @@ const Asteroid: FC<Props> = ({
   measure,
   setAsteroid,
   addToDestroy,
-}) => {
+}: Props) => {
   const name = asteroid.name.replace(/.*\(([\w ]+)\)/g, '$1');
 
   const distance = parseInt(
