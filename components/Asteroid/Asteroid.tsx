@@ -69,7 +69,7 @@ const Asteroid: FC<Props> = ({
       }`}
     >
       <div className={styles.asteroid__space}>
-        <div>
+        <div className={styles['asteroid__rock-container']}>
           <img
             src="/images/asteroid.svg"
             className={styles.asteroid__rock}

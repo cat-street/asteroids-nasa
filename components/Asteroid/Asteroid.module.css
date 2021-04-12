@@ -19,8 +19,9 @@
 
 .asteroid__space {
   grid-row: span 2;
+  margin: -25px 0;
   display: grid;
-  grid-template-rows: 60% 35%;
+  grid-template-rows: 60% 40%;
 }
 
 .asteroid__space div {
@@ -28,6 +29,7 @@
 }
 
 .asteroid__rock {
+  display: block;
   min-width: 50px;
   max-width: 1000px;
   height: auto;
@@ -38,11 +40,12 @@
 }
 
 .asteroid__dino {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 16px;
   width: 56px;
   height: 48px;
-  position: absolute;
-  bottom: -25px;
-  left: 16px;
 }
 
 .asteroid__name, .asteroid__data {
@@ -104,4 +107,83 @@
   margin-left: auto;
   margin-right: 24px;
   grid-row: span 2;
+}
+
+@media (max-width: 768px) {
+  .asteroid {
+    padding: 0 18px 22px;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: 105px 40px;
+  }
+
+  .asteroid__space {
+    margin: 0;
+    grid-row: span 1;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 56px;
+    grid-column: span 2;
+  }
+
+  .asteroid__dino {
+    position: absolute;
+    left: auto;
+    bottom: -40px;
+    right: -10px;
+    transform: scaleX(-1);
+  }
+
+  .asteroid__rock {
+    max-width: 320px;
+    height: auto;
+    bottom: 25px;
+    left: 50px;
+  }
+
+  .bg_normal {
+    background: linear-gradient(180deg, transparent 145px, #fff 145px),
+      linear-gradient(90deg, #CFF37D 0%, #7DE88C 100%);
+  }
+
+  .bg_dangerous {
+    background: linear-gradient(180deg, transparent 145px, #fff 145px),
+      linear-gradient(90deg, #FFB199 0%, #FF0844 100%);
+  }
+
+  .asteroid__name, .asteroid__data {
+    grid-column: 1;
+  }
+
+  .asteroid__data {
+    grid-row: 3;
+  }
+
+  .asteroid__rating_main {
+    margin: 0 0 0 auto;
+    grid-row: span 1;
+    grid-row: 3;
+    padding-top: 16px;
+  }
+}
+
+@media (max-width: 525px) {
+  .asteroid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 105px 40px;
+  }
+
+  .asteroid__space {
+    grid-template-columns: 1fr 35px;
+    grid-column: span 1;
+  }
+
+  .asteroid__dino {
+    width: 35px;
+    height: 30px;
+  }
+
+  .asteroid__rating_main {
+    margin: 0 auto;
+    grid-row: auto;
+    padding-top: 0;
+  }
 }
