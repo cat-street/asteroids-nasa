@@ -5,7 +5,7 @@
 
 A sample frontend application for browsing and destroying near Earth asteroids.
 
-* Current live version at
+* Current live version at [https://asteroids-nasa.vercel.app/](https://asteroids-nasa.vercel.app/)
 
 ---
 ## Features

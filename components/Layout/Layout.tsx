@@ -12,7 +12,7 @@ const Layout: FC<Props> = ({ title, children }: Props) => (
     <Head>
       <title>{title}</title>
       <meta name="image" property="og:image"
-        content="%PUBLIC_URL%/images/asteroids_og.png" />
+        content="https://asteroids-nasa.vercel.app/images/asteroids_og.png" />
       <meta name="description" property="og:description"
         content="Near Earth asteroids removal program - a test assignment app. Made on Next.js/React/TypeScript/NASA API" />
       <meta name="author" content="Andrey Kudryavtsev <catlogic@ya.ru>" />
