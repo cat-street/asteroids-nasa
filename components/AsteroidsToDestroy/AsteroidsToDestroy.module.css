@@ -3,6 +3,133 @@
 }
 
 .asteroids__grid {
+  margin: 0 0 26px;
+  padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 25%));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 8px;
+}
+
+.asteroid {
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+.bg_normal {
+  background: linear-gradient(225deg, #CFF37D 0%, transparent 40%);
+}
+
+.bg_dangerous {
+  background: linear-gradient(225deg, #FFB199 0%, transparent 40%);
+}
+
+.asteroid__rock {
+  width: 200px;
+  height: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translate(-40%, 40%);
+
+  z-index: -1;
+  opacity: .4;
+}
+
+.asteroid__name {
+  margin: 0;
+}
+
+.button {
+  padding: 0;
+
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid #000;
+  cursor: pointer;
+  transition: all 200ms ease-out;
+
+  font-family: inherit;
+}
+
+.button:hover {
+  opacity: .5;
+}
+
+.asteroid__link {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.asteroid__data {
+  margin: 0;
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.asteroid__data-row {
+  display: flex;
+}
+
+.asteroid__data-row p {
+  margin: 0;
+}
+
+.asteroid__data-name {
+  flex-shrink: 0;
+}
+
+.asteroid__data-dots {
+  width: 100%;
+  border-bottom: 1px dotted #000;
+}
+
+.asteroid__data-value {
+  flex-shrink: 0;
+}
+
+.asteroid__button {
+  padding: 14px 16px;
+  margin: 0 auto;
+
+  border: 0;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 200ms ease-out;
+
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.asteroid__button:hover {
+  opacity: .8;
+}
+
+.asteroid__button:active {
+  transform: translateY(3px);
+}
+
+.asteroid__cancel {
+  background-color: #186DD6;
+}
+
+.asteroid__confirm {
+  background-color: #d61818;
+  font-weight: 700;
+}
+
+.asteroid__message {
+  margin: 0;
+  padding: 14px 0;
+
+  text-align: center;
+  font-weight: 700;
+  color: #d61818;
 }

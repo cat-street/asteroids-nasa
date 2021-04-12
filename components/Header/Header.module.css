@@ -34,14 +34,9 @@
   border-bottom: 1px solid #000;
   cursor: pointer;
   transition: all 200ms ease-out;
-  outline: none;
 
   font-family: inherit;
   font-size: 16px;
-}
-
-.button:focus-visible {
-  outline: auto;
 }
 
 .button:hover {

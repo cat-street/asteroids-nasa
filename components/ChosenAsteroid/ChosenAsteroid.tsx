@@ -36,6 +36,7 @@ const ChosenAsteroid: FC<Props> = ({ asteroid, data, addToDestroy }) => {
       date: asteroid?.date || '',
       distance: asteroid?.distance || '',
       width,
+      hazardous: asteroid?.hazardous || data.is_potentially_hazardous_asteroid,
     });
   };
 
@@ -54,10 +55,10 @@ const ChosenAsteroid: FC<Props> = ({ asteroid, data, addToDestroy }) => {
           alt="Астероид"
         />
 
-      <AsteroidRating
-        hazardous={data.is_potentially_hazardous_asteroid}
-        addToDestroy={handleAddToDestroy}
-      />
+        <AsteroidRating
+          hazardous={data.is_potentially_hazardous_asteroid}
+          addToDestroy={handleAddToDestroy}
+        />
       </div>
 
       <div className={styles.asteroid__description}>

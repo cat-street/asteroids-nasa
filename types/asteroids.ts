@@ -4,4 +4,5 @@ export type SingleAsteroid = {
   date: string;
   distance: string;
   width: string;
+  hazardous: boolean;
 };

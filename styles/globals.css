@@ -18,3 +18,12 @@ a {
 ul {
   list-style: none;
 }
+
+button {
+  display: block;
+  outline: none;
+}
+
+button:focus-visible {
+  outline: auto;
+}

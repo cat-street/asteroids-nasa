@@ -45,6 +45,7 @@ const Asteroid: FC<Props> = ({
       date,
       distance,
       width,
+      hazardous: asteroid.is_potentially_hazardous_asteroid,
     });
   };
 
@@ -55,6 +56,7 @@ const Asteroid: FC<Props> = ({
       date,
       distance,
       width,
+      hazardous: asteroid.is_potentially_hazardous_asteroid,
     });
   };
 

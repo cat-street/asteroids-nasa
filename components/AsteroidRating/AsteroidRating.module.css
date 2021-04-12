@@ -21,7 +21,6 @@
   border-radius: 24px;
   cursor: pointer;
   transition: all 200ms ease-out;
-  outline: none;
 
   color: #fff;
   font-family: inherit;
@@ -34,8 +33,4 @@
 
 .asteroid__rating-button:active {
   transform: translateY(3px);
-}
-
-.asteroid__rating-button:focus-visible {
-  outline: auto;
 }
