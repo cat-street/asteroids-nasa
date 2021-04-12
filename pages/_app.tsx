@@ -14,10 +14,11 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
   >([]);
   const [count, setCount] = useState(5);
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [sameData, setSameData] = useState(false);
   const [filter, setFilter] = useState(false);
   const [chosenAsteroid, setChosenAsteroid] = useState<SingleAsteroid>();
 
-  const addCards = () => {
+  const addVisibleCards = () => {
     setCount((count) => count + 3);
   };
 
@@ -33,9 +34,13 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     setFilter(!filter);
   };
 
-  const setAsteroid = (data) => {
+  const setAsteroid = (data: SingleAsteroid) => {
     setChosenAsteroid(data);
   };
+
+  const setDataFlag = (flag: boolean) => {
+    setSameData(flag);
+  }
 
   useEffect(() => {
     if (currentAsteroids.length > 0) {
@@ -52,6 +57,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
       const date = new Date(currentDate);
       date.setDate(date.getDate() + 7);
       setCurrentDate(date);
+      setSameData(false);
     }
   }, [currentAsteroids, count]);
 
@@ -76,13 +82,15 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
       {...pageProps}
       visibleAsteroids={visibleAsteroids}
       date={currentDate}
+      sameData={sameData}
       filter={filter}
       asteroid={chosenAsteroid}
       addAsteroids={addAsteroids}
       addCurrentAsteroids={addCurrentAsteroids}
-      addCards={addCards}
+      addVisibleCards={addVisibleCards}
       switchFilter={switchFilter}
       setAsteroid={setAsteroid}
+      setDataFlag={setDataFlag}
     />
   );
 }

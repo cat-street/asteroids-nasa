@@ -10,22 +10,26 @@ type Props = {
   visibleAsteroids: Record<string, any>[];
   date: Date;
   filter: boolean;
+  sameData: boolean;
   addAsteroids: (data: Record<string, any>) => void;
   addCurrentAsteroids: (data: Record<string, any>) => void;
-  addCards: () => void;
+  addVisibleCards: () => void;
   switchFilter: () => void;
   setAsteroid: (data: Record<string, any>) => void;
+  setDataFlag: (flag: boolean) => void;
 };
 
 export default function Home({
   visibleAsteroids,
   date,
   filter,
+  sameData,
   addAsteroids,
   addCurrentAsteroids,
-  addCards,
+  addVisibleCards,
   switchFilter,
   setAsteroid,
+  setDataFlag,
 }: Props): ReactElement {
   const { data, isLoading } = useAsteroids(date);
   const loader = useRef<HTMLDivElement>(null);
@@ -33,7 +37,7 @@ export default function Home({
   const handleObserver = (entries: IntersectionObserverEntry[]) => {
     const target = entries[0];
     if (target.isIntersecting) {
-      addCards();
+      addVisibleCards();
     }
   };
 
@@ -50,7 +54,7 @@ export default function Home({
   }, []);
 
   useEffect(() => {
-    if (data) {
+    if (data && !sameData) {
       const initialData = Object.keys(data.near_earth_objects).sort();
       let asteroidData = [];
       initialData.map((el) => {
@@ -65,6 +69,7 @@ export default function Home({
       } else {
         addCurrentAsteroids(asteroidData);
       }
+      setDataFlag(true);
     }
   }, [data]);
 
