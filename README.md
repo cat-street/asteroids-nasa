@@ -24,6 +24,7 @@ A sample frontend application for browsing and destroying near Earth asteroids.
 
 #### Single asteroid page
 * The data is fetched by a separate call to the API.
+* The route is built dynamically, the asteroid id is taken from the url string.
 * Additional info shows every asteroid approach to Earth from 1900 to 2200.
 * Each asteroid can be marked for destroying from this page also.
 
@@ -47,3 +48,4 @@ A sample frontend application for browsing and destroying near Earth asteroids.
 * Removal of extra API request at main page mount
 * Possible use of server-side data fetching
 * Using state manager
+* Back to top button

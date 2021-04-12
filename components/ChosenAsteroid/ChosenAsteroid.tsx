@@ -65,23 +65,21 @@ const ChosenAsteroid: FC<Props> = ({ asteroid, data, addToDestroy }: Props) => {
         <h2 className={styles.asteroid__name}>{asteroid?.name || dataName}</h2>
 
         <ul className={styles.asteroid__data}>
-          {asteroid && (
-            <>
-              <li className={styles['asteroid__data-row']}>
-                <p>Дата</p>
-                <p className={styles['asteroid__data-dots']}></p>
-                <p className={styles['asteroid__data-value']}>
-                  {asteroid.date}
-                </p>
-              </li>
-              <li className={styles['asteroid__data-row']}>
-                <p>Расстояние</p>
-                <p className={styles['asteroid__data-dots']}></p>
-                <p className={styles['asteroid__data-value']}>
-                  {asteroid.distance}
-                </p>
-              </li>
-            </>
+          {asteroid?.date && (
+            <li className={styles['asteroid__data-row']}>
+              <p>Дата</p>
+              <p className={styles['asteroid__data-dots']}></p>
+              <p className={styles['asteroid__data-value']}>{asteroid.date}</p>
+            </li>
+          )}
+          {asteroid?.distance && (
+            <li className={styles['asteroid__data-row']}>
+              <p>Расстояние</p>
+              <p className={styles['asteroid__data-dots']}></p>
+              <p className={styles['asteroid__data-value']}>
+                {asteroid.distance}
+              </p>
+            </li>
           )}
           <li className={styles['asteroid__data-row']}>
             <p>Размер</p>

@@ -7,10 +7,26 @@ import styles from './AsteroidsToDestroy.module.css';
 type Props = {
   asteroids: Record<string, SingleAsteroid>;
   onRemove: (id: string) => void;
+  setAsteroid: (data: Record<string, any>) => void;
 };
 
-const AsteroidsToDestroy: FC<Props> = ({ asteroids, onRemove }: Props) => {
+const AsteroidsToDestroy: FC<Props> = ({
+  asteroids,
+  onRemove,
+  setAsteroid,
+}: Props) => {
   const [success, setSuccess] = useState(false);
+
+  const handleAsteroidClick = (el: SingleAsteroid) => {
+    setAsteroid({
+      id: el.id,
+      name: el.name,
+      date: el?.date || '',
+      distance: el?.distance || '',
+      width: el.width,
+      hazardous: el.hazardous,
+    });
+  };
 
   return (
     <main className={styles.asteroids}>
@@ -34,6 +50,7 @@ const AsteroidsToDestroy: FC<Props> = ({ asteroids, onRemove }: Props) => {
                   <button
                     type="button"
                     className={`${styles.button} ${styles.asteroid__link}`}
+                    onClick={() => handleAsteroidClick(el)}
                   >
                     {el.name}
                   </button>

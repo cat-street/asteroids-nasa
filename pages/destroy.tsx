@@ -8,17 +8,20 @@ import { SingleAsteroid } from '../types/asteroids';
 type Props = {
   asteroidsToDestroy: Record<string, SingleAsteroid>;
   removeFromDestroy: (id: string) => void;
+  setAsteroid: (data: Record<string, any>) => void;
 };
 
 const destroy: FC<Props> = ({
   asteroidsToDestroy,
   removeFromDestroy,
+  setAsteroid,
 }: Props) => (
   <Layout title="Armageddon V - на уничтожение">
     <Header />
     <AsteroidsToDestroy
       asteroids={asteroidsToDestroy}
       onRemove={removeFromDestroy}
+      setAsteroid={setAsteroid}
     />
   </Layout>
 );
