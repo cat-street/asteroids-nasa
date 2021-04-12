@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Armageddon V
+**A sample frontend project on React-Next.js-TypeScript**
 
-## Getting Started
+![Armageddon V](./asteroids_gh.png)
 
-First, run the development server:
+A sample frontend application for browsing and destroying near Earth asteroids.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+* Current live version at
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
+## Features
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+* Asteroids info is loaded from [NASA API](https://api.nasa.gov)
+* There are 3 routes: Main page (all asteroids), Single asteroid page and Asteroids to destroy page.
+* All pages are built with responsive layout.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+#### Main page
+* Asteroids are loaded indefinitely by scroll.
+* Initially, the data for 7 days from current date is fetched, it is added to a page from the React state continuously by a scroll. When the end of the data is reached, a new part of the data for the next 7 days is fetched and added to the state.
+* The size of the asteroid picture is based on the size from the data.
+* Potentially hazardous asteroids are marked with red and by the text at the right section.
+* There is a filter to show only hazardous asteroids. The distance from Earth can be shown in kilometers or in Lunar distance.
+* Each asteroid can be marked for destroying.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+#### Single asteroid page
+* The data is fetched by a separate call to the API.
+* Additional info shows every asteroid approach to Earth from 1900 to 2200.
+* Each asteroid can be marked for destroying from this page also.
 
-## Learn More
+#### Asteroids to destroy page
+* The list of all asteroids marked for destroying is shown.
+* Each asteroid can be removed from the list.
+* A confirmation button sends a team to destroy selected asteroids.
 
-To learn more about Next.js, take a look at the following resources:
+## Technology
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* React (functional components)
+* Next.js
+* SWR (client-side data fetching)
+* TypeScript
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Possible improvements
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* Design improvements
+* Animations
+* Better work with types
+* Removal of extra API request at main page mount
+* Possible use of server-side data fetching
+* Using state manager
