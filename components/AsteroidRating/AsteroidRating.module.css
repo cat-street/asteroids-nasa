@@ -1,0 +1,41 @@
+.asteroid__rating {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.asteroid__rating p:first-child {
+  margin: 0;
+}
+.asteroid__rating-type {
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.asteroid__rating-button {
+  padding: 14px 16px;
+
+  background-color: #186DD6;
+  border: 0;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 200ms ease-out;
+  outline: none;
+
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.asteroid__rating-button:hover {
+  opacity: .8;
+}
+
+.asteroid__rating-button:active {
+  transform: translateY(3px);
+}
+
+.asteroid__rating-button:focus-visible {
+  outline: auto;
+}

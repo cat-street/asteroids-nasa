@@ -5,6 +5,7 @@ import Footer from '../components/Footer/Footer';
 import Layout from '../components/Layout/Layout';
 import Asteroids from '../components/Asteroids/Asteroids';
 import useAsteroids from '../hooks/useAsteroids';
+import { SingleAsteroid } from '../types/asteroids';
 
 type Props = {
   visibleAsteroids: Record<string, any>[];
@@ -17,6 +18,7 @@ type Props = {
   switchFilter: () => void;
   setAsteroid: (data: Record<string, any>) => void;
   setDataFlag: (flag: boolean) => void;
+  addToDestroy: (item: SingleAsteroid) => void;
 };
 
 export default function Home({
@@ -30,6 +32,7 @@ export default function Home({
   switchFilter,
   setAsteroid,
   setDataFlag,
+  addToDestroy,
 }: Props): ReactElement {
   const { data, isLoading } = useAsteroids(date);
   const loader = useRef<HTMLDivElement>(null);
@@ -82,6 +85,7 @@ export default function Home({
         switchFilter={switchFilter}
         isLoading={isLoading}
         setAsteroid={setAsteroid}
+        addToDestroy={addToDestroy}
       />
       <div ref={loader}></div>
       <Footer />

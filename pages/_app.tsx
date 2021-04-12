@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
   const [currentAsteroids, setCurrentAsteroids] = useState<
     Record<string, any>[]
   >([]);
+  const [asteroidsToDestroy, setAsteroidsToDestroy] = useState<Record<string, SingleAsteroid>>();
   const [count, setCount] = useState(5);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [sameData, setSameData] = useState(false);
@@ -40,6 +41,16 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
 
   const setDataFlag = (flag: boolean) => {
     setSameData(flag);
+  }
+
+  const addToDestroy = (item: SingleAsteroid) => {
+    setAsteroidsToDestroy(prevData => ({ ...prevData, [item.id]: item }));
+  }
+
+  const removeFromDestroy = (id: string) => {
+    const newAsteroids = {...asteroidsToDestroy};
+    delete newAsteroids[id];
+    setAsteroidsToDestroy(newAsteroids);
   }
 
   useEffect(() => {
@@ -85,12 +96,15 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
       sameData={sameData}
       filter={filter}
       asteroid={chosenAsteroid}
+      asteroidsToDestroy={asteroidsToDestroy}
       addAsteroids={addAsteroids}
       addCurrentAsteroids={addCurrentAsteroids}
       addVisibleCards={addVisibleCards}
       switchFilter={switchFilter}
       setAsteroid={setAsteroid}
       setDataFlag={setDataFlag}
+      addToDestroy={addToDestroy}
+      removeFromDestroy={removeFromDestroy}
     />
   );
 }

@@ -43,6 +43,7 @@
   max-width: 150px;
   height: auto;
   display: block;
+  margin-bottom: 48px;
 
   animation: rotate 20s linear infinite;
 }
@@ -106,38 +107,4 @@
 
 .asteroid__approach:nth-child(odd) {
   background-color: #f3fae3;
-}
-
-.asteroid__rating {
-  margin-top: 48px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.asteroid__rating p:first-child {
-  margin: 0;
-}
-.asteroid__rating-type {
-  font-weight: bold;
-  margin: 8px 0;
-}
-
-.asteroid__rating-button {
-  padding: 14px 16px;
-
-  background-color: #186DD6;
-  border: 0;
-  border-radius: 24px;
-  cursor: pointer;
-  transition: all 200ms ease-out;
-
-  color: #fff;
-  font-family: inherit;
-  font-size: 16px;
-}
-
-.asteroid__rating-button:hover {
-  opacity: .8;
 }

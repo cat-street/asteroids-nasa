@@ -2,11 +2,13 @@ import { FC } from 'react';
 import { SingleAsteroid } from '../../types/asteroids';
 
 import formatDate from '../../utils/formatDate';
+import AsteroidRating from '../AsteroidRating/AsteroidRating';
 import styles from './ChosenAsteroid.module.css';
 
 type Props = {
   asteroid: SingleAsteroid;
   data: Record<string, any>;
+  addToDestroy: (item: SingleAsteroid) => void;
 };
 
 const planets = {
@@ -18,7 +20,7 @@ const planets = {
   Moon: 'Луны',
 };
 
-const ChosenAsteroid: FC<Props> = ({ asteroid, data }) => {
+const ChosenAsteroid: FC<Props> = ({ asteroid, data, addToDestroy }) => {
   const dataName = data.name.replace(/.*\(([\w ]+)\)/g, '$1');
 
   const width = (
@@ -26,6 +28,16 @@ const ChosenAsteroid: FC<Props> = ({ asteroid, data }) => {
       data.estimated_diameter.meters.estimated_diameter_max) /
     2
   ).toFixed();
+
+  const handleAddToDestroy = () => {
+    addToDestroy({
+      id: asteroid?.id || data.id,
+      name: asteroid?.name || dataName,
+      date: asteroid?.date || '',
+      distance: asteroid?.distance || '',
+      width,
+    });
+  };
 
   return (
     <div
@@ -41,16 +53,13 @@ const ChosenAsteroid: FC<Props> = ({ asteroid, data }) => {
           className={styles.asteroid__rock}
           alt="Астероид"
         />
-        <div className={styles.asteroid__rating}>
-          <p>Оценка:</p>
-          <p className={styles['asteroid__rating-type']}>
-            {data.is_potentially_hazardous_asteroid ? 'опасен' : 'не опасен'}
-          </p>
-          <button type="button" className={styles['asteroid__rating-button']}>
-            На уничтожение
-          </button>
-        </div>
+
+      <AsteroidRating
+        hazardous={data.is_potentially_hazardous_asteroid}
+        addToDestroy={handleAddToDestroy}
+      />
       </div>
+
       <div className={styles.asteroid__description}>
         <h2 className={styles.asteroid__name}>{asteroid?.name || dataName}</h2>
 

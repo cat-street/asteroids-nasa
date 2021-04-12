@@ -11,9 +11,10 @@ import ChosenAsteroid from '../../../components/ChosenAsteroid/ChosenAsteroid';
 
 type Props = {
   asteroid: SingleAsteroid;
-}
+  addToDestroy: (item: SingleAsteroid) => void;
+};
 
-const index: FC<Props> = ({ asteroid }) => {
+const index: FC<Props> = ({ asteroid, addToDestroy }) => {
   const router = useRouter();
   const { id } = router.query;
   const { data, isLoading } = useAsteroid(id as string);
@@ -23,10 +24,15 @@ const index: FC<Props> = ({ asteroid }) => {
     <Layout title={title}>
       <Header />
 
-      {isLoading ? <Spinner /> : (
-        <ChosenAsteroid asteroid={asteroid} data={data} />
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <ChosenAsteroid
+          asteroid={asteroid}
+          data={data}
+          addToDestroy={addToDestroy}
+        />
       )}
-
     </Layout>
   );
 };
