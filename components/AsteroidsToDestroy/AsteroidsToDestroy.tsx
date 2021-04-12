@@ -80,7 +80,7 @@ const AsteroidsToDestroy: FC<Props> = ({ asteroids, onRemove }: Props) => {
             </li>
           ))}
       </ul>
-      {asteroids && (
+      {asteroids && Object.keys(asteroids).length > 0 && (
         <button
           type="button"
           className={`${styles.asteroid__button} ${styles.asteroid__confirm}`}
