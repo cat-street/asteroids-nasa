@@ -103,8 +103,49 @@
 
   border: 1px solid rgba(0, 0, 0, .2);
   border-radius: 5px;
+  background-color: #fff;
 }
 
 .asteroid__approach:nth-child(odd) {
   background-color: #f3fae3;
+}
+
+@media (max-width: 768px) {
+  .asteroid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .asteroid__rock-container {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 16px 0;
+  }
+
+  .asteroid__rock {
+    max-width: 100px;
+    margin: 0;
+  }
+}
+
+@media (max-width: 525px) {
+  .asteroid__rock-container {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 8px 0;
+  }
+
+  .asteroid__rock {
+    margin-bottom: 24px;
+  }
+
+  .asteroid__approach {
+    margin: 12px -8px 0;
+
+    font-size: 14px;
+  }
 }
