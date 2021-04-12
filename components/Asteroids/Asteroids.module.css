@@ -9,9 +9,15 @@
   margin-left: 6px;
 }
 
-.sort {
+.filter__check {
+  display: block;
+  height: 22px;
+}
+
+.filter__sort {
   display: flex;
   gap: 6px;
+  flex-wrap: wrap;
 }
 
 .button {
@@ -25,6 +31,7 @@
 
   font-family: inherit;
   font-size: 16px;
+  line-height: 1;
 }
 
 .button:hover {
@@ -41,6 +48,14 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 16px;
 }
 
+@media (max-width: 768px) {
+  .filter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 10px 0 16px;
+  }
+}

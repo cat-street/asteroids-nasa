@@ -20,7 +20,7 @@
 .asteroid__space {
   grid-row: span 2;
   display: grid;
-  grid-template-rows: 60% 40%;
+  grid-template-rows: 60% 35%;
 }
 
 .asteroid__space div {

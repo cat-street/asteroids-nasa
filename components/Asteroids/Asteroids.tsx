@@ -27,7 +27,7 @@ const Asteroids: FC<Props> = ({
   return (
     <main className={styles.main}>
       <div className={styles.filter}>
-        <div>
+        <div className={styles.filter__check}>
           <input
             type="checkbox"
             name="dangerous"
@@ -39,7 +39,7 @@ const Asteroids: FC<Props> = ({
             Показать только опасные
           </label>
         </div>
-        <div className={styles.sort}>
+        <div className={styles.filter__sort}>
           Расстояние
           <button
             type="button"
