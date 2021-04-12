@@ -40,7 +40,7 @@ const ChosenAsteroid: FC<Props> = ({ asteroid, data, addToDestroy }) => {
   };
 
   return (
-    <div
+    <main
       className={`${styles.asteroid} ${
         data.is_potentially_hazardous_asteroid
           ? styles.bg_dangerous
@@ -151,7 +151,7 @@ const ChosenAsteroid: FC<Props> = ({ asteroid, data, addToDestroy }) => {
           ))}
         </ul>
       </div>
-    </div>
+    </main>
   );
 };
 

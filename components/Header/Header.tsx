@@ -21,7 +21,7 @@ const Header: FC = () => (
         <li>
           <ActiveLink href="/" activeClassName={styles.button_active}>
             <button type="button" className={styles.button}>
-              Астеродиды
+              Астероиды
             </button>
           </ActiveLink>
         </li>
